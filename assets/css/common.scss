@@ -1,11 +1,27 @@
-//html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,p,input,textarea,select,button,th,td,blockquote {margin:0;padding:0}
-//body {-webkit-text-size-adjust:none}
-//ul,ol,li {list-style:none}
-//a {text-decoration:none}
-//img {max-width:100%;border:none;vertical-align:top}
-//button, input[type=button], input[type=submit] {-webkit-appearance:none;-webkit-border-radius:none}
-//
-//.blind {visibility:hidden; overflow:hidden; position:absolute; top:0; left:0; width:1px; height:1px; font-size:0; line-height:0}
-//
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,p,input,textarea,select,button,th,td,blockquote {margin:0;padding:0}
+body {-webkit-text-size-adjust:none}
+ul,ol,li {list-style:none}
+a {text-decoration:none}
+img {max-width:100%;border:none;vertical-align:top}
+button, input[type=button], input[type=submit] {-webkit-appearance:none;-webkit-border-radius:none}
 
-$red : blue;
+.blind {visibility:hidden; overflow:hidden; position:absolute; top:0; left:0; width:1px; height:1px; font-size:0; line-height:0}
+
+//COMMON
+//BTN
+.btn {
+	display:inline-block;
+	padding:6px 12px;
+	border:1px solid transparent;
+	border-radius:4px;
+	background:none;
+	font-family:inherit;
+	font-size:14px;
+	color:#333;
+	line-height:1.43;
+	text-align:center;
+	vertical-align:top;
+	user-select:none;
+	cursor:pointer;
+	outline:none;
+}

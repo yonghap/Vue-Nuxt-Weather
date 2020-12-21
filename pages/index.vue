@@ -1,6 +1,19 @@
 <template>
-	<div class="container">
-		<img src="~/assets/images/temp1.jpg">
+	<div id="intro" class="intro">
+		<div class="intro__wrap">
+			<div class="intro__inner">
+				<h1 class="logo">
+					<a href="/">
+						<img src="~/assets/images/logo.jpg" alt="Todo">
+					</a>
+				</h1>
+				<div class="intro__btn">
+					<a href="/" class="btn">
+						TODO
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -9,7 +22,18 @@ export default {}
 </script>
 
 <style lang="scss">
-	body {
-		color:$red;
+.intro {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	text-align:center;
+	&__wrap {
+		display:flex;
+		height:100%;
+		justify-content:center;
+		align-items:center;
 	}
+}
 </style>
