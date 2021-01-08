@@ -1,20 +1,24 @@
-# ToDo
+# Vue + Nuxt Todo Project
 
-## Build Setup
 
-```bash
-# install dependencies
-$ npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+## 프로젝트 소개
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+Vue + Nuxt를 활용한 ToDo 프로젝트입니다.
 
-# generate static project
-$ npm run generate
-```
+<br>
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## 프로젝트 화면
+
+<br>
+
+## Prototype 
+
+Figma
+
+<br>
+
+## FrontEnd
+
+Vue.js 3.0 <br>
+Nuxt.Js
