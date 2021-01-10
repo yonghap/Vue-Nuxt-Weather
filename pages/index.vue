@@ -3,14 +3,12 @@
 		<div class="intro__wrap">
 			<div class="intro__inner">
 				<h1 class="logo">
-					<a href="/">
-						<img src="~/assets/images/logo.jpg" alt="Todo">
-					</a>
+					<img src="~/assets/images/logo.jpg" alt="Todo">
 				</h1>
 				<div class="intro__btn">
-					<a href="/" class="btn">
+					<NuxtLink to="/todo" class="btn-intro">
 						TODO
-					</a>
+					</NuxtLink>
 				</div>
 			</div>
 		</div>
@@ -35,5 +33,17 @@ export default {}
 		justify-content:center;
 		align-items:center;
 	}
+	&__btn {
+		margin-top:20px
+	}
+}
+.btn-intro {
+	display:inline-block;
+	min-width:200px;
+	padding:10px 20px;
+	border:1px solid #ccc;
+	border-radius:10px;
+	box-shadow:5px 5px 5px rgba(0,0,0,.1);
+	color:#222
 }
 </style>

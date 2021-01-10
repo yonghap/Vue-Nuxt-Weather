@@ -1,20 +1,20 @@
 export default {
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
-		title: 'ToDo222222',
+		title: 'Vue+Nuxt ToDo',
 		meta: [
 			{charset: 'utf-8'},
 			{name: 'viewport', content: 'width=device-width, initial-scale=1'},
 			{hid: 'description', name: 'description', content: ''}
 		],
 		link: [
-			{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+			{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+			{rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap'},
 		]
 	},
 
 	// Global CSS (https://go.nuxtjs.dev/config-css)
 	css: [
-
 	],
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
