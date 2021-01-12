@@ -1,0 +1,56 @@
+<template>
+	<section id="timer" class="timer">
+		<h2 class="blind">현재 날짜&시간</h2>
+		<span class="timer__date">
+			{{ date }}
+		</span>
+		<span class="timer__time">
+			{{ time }}
+		</span>
+	</section>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				date : '',
+				time : ''
+			}
+		},
+		mounted() {
+			this.init();
+		},
+		methods : {
+			init() {
+				setInterval(() => {
+					this.time();
+					this.date();
+				},1000)
+			},
+			date() {
+				var now = new Date();
+				var nowDate = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate();
+				this.date = nowDate;
+			},
+			time() {
+				var now = new Date();
+				var nowTime = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+				this.time = nowTime;
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.timer {
+		text-align:right;
+		&__date {
+			font-size:36px
+		}
+		&__time {
+			font-size:120px;
+			font-weight:bold;
+		}
+	}
+</style>

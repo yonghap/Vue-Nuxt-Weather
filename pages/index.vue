@@ -42,8 +42,8 @@ export default {}
 	min-width:200px;
 	padding:10px 20px;
 	border:1px solid #ccc;
-	border-radius:10px;
-	box-shadow:5px 5px 5px rgba(0,0,0,.1);
-	color:#222
+	background:#333;
+	box-shadow:5px 5px 5px rgba(0,0,0,.3);
+	color:#fff
 }
 </style>
