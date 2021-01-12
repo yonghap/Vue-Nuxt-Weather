@@ -14,6 +14,7 @@
 	export default {
 		data() {
 			return {
+				interval : '',
 				date : '',
 				time : ''
 			}
@@ -23,17 +24,18 @@
 		},
 		methods : {
 			init() {
+				var self = this;
 				setInterval(() => {
-					this.time();
-					this.date();
+					self.getTime();
+					self.getDate();
 				},1000)
 			},
-			date() {
+			getDate() {
 				var now = new Date();
 				var nowDate = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate();
 				this.date = nowDate;
 			},
-			time() {
+			getTime() {
 				var now = new Date();
 				var nowTime = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
 				this.time = nowTime;
