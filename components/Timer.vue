@@ -19,7 +19,7 @@
 				time : ''
 			}
 		},
-		mounted() {
+		created() {
 			this.init();
 		},
 		methods : {
@@ -48,11 +48,15 @@
 	.timer {
 		text-align:right;
 		&__date {
+			display:inline-block;
 			font-size:36px
 		}
 		&__time {
+			display:inline-block;
+			min-width:470px;
 			font-size:120px;
 			font-weight:bold;
+			text-align:left;
 		}
 	}
 </style>
