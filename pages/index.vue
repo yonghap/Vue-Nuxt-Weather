@@ -30,13 +30,13 @@
 		align-items:center;
 	}
 	&__btn {
-		margin-top:20px
+		margin-top:25px
 	}
 }
 .btn-intro {
 	display:inline-block;
 	min-width:200px;
-	padding:10px 20px;
+	padding:14px 20px;
 	border:1px solid #ccc;
 	background:#333;
 	box-shadow:5px 5px 5px rgba(0,0,0,.3);
