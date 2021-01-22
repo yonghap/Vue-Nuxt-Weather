@@ -53,7 +53,7 @@
 		}
 		&__time {
 			display:inline-block;
-			min-width:470px;
+			min-width:484px;
 			font-size:120px;
 			font-weight:bold;
 			text-align:left;

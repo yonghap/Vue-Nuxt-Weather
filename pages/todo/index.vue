@@ -1,7 +1,7 @@
 <template>
 	<div class="content">
 		<Timer/>
-		<div class="todo-list">
+		<section class="todo-list">
 			<ul class="list">
 				<li>
 					<div class="list__category">카테고리</div>
@@ -55,6 +55,11 @@
 					</div>
 				</li>
 			</ul>
+		</section>
+		<div class="btn-wrap">
+			<a href="#" class="btn-add">
+				할일 추가하기
+			</a>
 		</div>
 	</div>
 </template>
@@ -83,6 +88,7 @@ export default {
 	}
 	&__info {
 		flex-grow:1;
+		flex-basis:50%;
 	}
 	&__title {
 		font-size:36px
@@ -93,6 +99,11 @@ export default {
 	}
 	&__meta {
 		flex-grow:1;
+		text-align:right;
+	}
+	&__dday {
+		font-size:28px;
+		font-weight:bold;
 	}
 }
 </style>
