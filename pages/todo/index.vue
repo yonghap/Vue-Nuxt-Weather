@@ -4,7 +4,9 @@
 		<section class="todo-list">
 			<ul class="list">
 				<li>
-					<div class="list__category">카테고리</div>
+					<div class="list__category">
+						<Category/>
+					</div>
 					<div class="list__info">
 						<div class="list__title">
 							소스코드 정리
@@ -65,8 +67,10 @@
 </template>
 
 <script>
+
 export default {
 	layout: 'content'
+
 }
 </script>
 
