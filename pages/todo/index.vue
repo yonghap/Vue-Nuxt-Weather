@@ -5,7 +5,7 @@
 			<ul class="list">
 				<li>
 					<div class="list__category">
-						<Category/>
+						카테고리
 					</div>
 					<div class="list__info">
 						<div class="list__title">
@@ -63,6 +63,7 @@
 				할일 추가하기
 			</a>
 		</div>
+		<Category />
 	</div>
 </template>
 
