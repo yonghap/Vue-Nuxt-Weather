@@ -3,11 +3,11 @@
 		<div class="intro__wrap">
 			<div class="intro__inner">
 				<h1 class="logo">
-					<img src="~/assets/images/logo.jpg" alt="Todo">
+					<strong>Todo</strong> Lists
 				</h1>
 				<div class="intro__btn">
 					<NuxtLink to="/todo" class="btn-intro">
-						TODO
+						+
 					</NuxtLink>
 				</div>
 			</div>
@@ -33,13 +33,16 @@
 		margin-top:25px
 	}
 }
+.logo {
+	font-weight:normal;
+	strong {
+		font-weight:bold;
+	}
+}
 .btn-intro {
 	display:inline-block;
-	min-width:200px;
-	padding:14px 20px;
+	width:60px;
+	height:60px;
 	border:1px solid #ccc;
-	background:#333;
-	box-shadow:5px 5px 5px rgba(0,0,0,.3);
-	color:#fff
 }
 </style>

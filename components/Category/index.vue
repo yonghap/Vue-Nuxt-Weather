@@ -30,10 +30,7 @@
 
 <script>
 export default {
-	name: 'Category',
-	data() {
-
-	},
+	name: 'Category'
 }
 </script>
 
@@ -47,7 +44,8 @@ export default {
 		&__item {
 			display:inline-block;
 			button {
-				border:none
+				border:none;
+				outline:none;
 			}
 		}
 	}

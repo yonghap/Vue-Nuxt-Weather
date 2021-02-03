@@ -1,13 +1,21 @@
 html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,p,input,textarea,select,button,th,td,blockquote {margin:0;padding:0}
-body {-webkit-text-size-adjust:none;font-family:'Comfortaa','Noto Sans KR'}
+body {-webkit-text-size-adjust:none;font-family:'Raleway','Noto Sans KR'}
+h1,h2,h3,h4,h5,h6 {font-weight:normal}
 ul,ol,li {list-style:none}
 a {text-decoration:none}
 img {max-width:100%;border:none;vertical-align:top}
 button, input[type=button], input[type=submit] {-webkit-appearance:none;-webkit-border-radius:none;cursor:pointer}
 .blind {visibility:hidden; overflow:hidden; position:absolute; top:0; left:0; width:1px; height:1px; font-size:0; line-height:0}
 
+body {
+	max-width:700px;
+	margin:0 auto;
+}
 .content {
-	padding:50px 0;
+	padding:30px 20px;
+}
+.title {
+	margin-bottom:10px;
 }
 //BTN
 .btn-wrap {
@@ -33,24 +41,22 @@ button, input[type=button], input[type=submit] {-webkit-appearance:none;-webkit-
 .btn-add {
 	display:inline-block;
 	position:relative;
-	width:78px;
-	height:78px;
+	width:44px;
+	height:44px;
 	border-radius:50%;
 	background:#0080cc;
 	text-indent:-9999px;
-	transition:all .1s ease-out;
 	&:before {
 		content:'';
 		display:block;
 		position:absolute;
 		top:50%;
 		left:50%;
-		width:36px;
+		width:20px;
 		height:2px;
 		margin-top:-1px;
-		margin-left:-18px;
+		margin-left:-10px;
 		background:#fff;
-		transition:all .2s ease;
 	}
 	&:after {
 		content:'';
@@ -59,21 +65,9 @@ button, input[type=button], input[type=submit] {-webkit-appearance:none;-webkit-
 		top:50%;
 		left:50%;
 		width:2px;
-		height:36px;
-		margin-top:-18px;
+		height:20px;
+		margin-top:-10px;
 		margin-left:-1px;
 		background:#fff;
-		transition:all .2s ease;
-	}
-	&:hover {
-		transform:rotate(90deg);
-	}
-	&:hover:before {
-		width:30px;
-		margin-left:-15px;
-	}
-	&:hover:after {
-		height:30px;
-		margin-top:-15px;
 	}
 }

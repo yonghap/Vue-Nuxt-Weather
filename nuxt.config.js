@@ -9,12 +9,13 @@ export default {
 		],
 		link: [
 			{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
-			{rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap'},
+			{rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap'},
 		]
 	},
 
 	// Global CSS (https://go.nuxtjs.dev/config-css)
 	css: [
+		'@/assets/css/common.scss',
 	],
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -34,13 +35,13 @@ export default {
 		'@nuxtjs/axios',
 		// https://go.nuxtjs.dev/pwa
 		'@nuxtjs/pwa',
-		'@nuxtjs/style-resources',
+		// '@nuxtjs/style-resources',
 	],
-	styleResources : {
-		scss : [
-			'@/assets/css/common.scss'
-		]
-	},
+	// styleResources : {
+	// 	scss : [
+	// 		'@/assets/css/common.scss'
+	// 	]
+	// },
 	// Axios module configuration (https://go.nuxtjs.dev/config-axios)
 	axios: {},
 
