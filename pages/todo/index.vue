@@ -4,12 +4,15 @@
 			<h2 class="title">
 				<strong>Todo</strong>
 				Lists
+				<span class="meta">
+					Total : <strong>2</strong> / 5
+				</span>
 			</h2>
 			<ul class="list">
 				<li>
 					<div class="list__check">
-						<label for="">
-							<input type="checkbox">
+						<label for="todo1">
+							<input type="checkbox" id="todo1" class="blind">
 							<span class="chk"></span>
 						</label>
 					</div>
@@ -24,8 +27,8 @@
 				</li>
 				<li>
 					<div class="list__check">
-						<label for="">
-							<input type="checkbox">
+						<label for="todo2">
+							<input type="checkbox" id="todo2" class="blind">
 							<span class="chk"></span>
 						</label>
 					</div>
@@ -119,7 +122,7 @@ export default {
 	}
 	&__title {
 		display:inline-block;
-		font-size:18px
+		font-size:16px
 	}
 	&__desc {
 		font-size:14px;

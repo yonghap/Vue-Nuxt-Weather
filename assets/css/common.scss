@@ -16,6 +16,26 @@ body {
 }
 .title {
 	margin-bottom:10px;
+	font-size:26px;
+	line-height:26px;
+}
+.meta {
+	float:right;
+	font-size:14px;
+	color:#666
+}
+//CHK
+.chk {
+	display:inline-block;
+	width:26px;
+	height:27px;
+	background-image:url('~@/assets/images/bg_check.png');
+	background-repeat:no-repeat;
+	background-position:center 50%;
+	background-size:cover;
+}
+input[type=checkbox]:checked ~ .chk {
+	background-image:url('~@/assets/images/bg_check_ov.png');
 }
 //BTN
 .btn-wrap {
@@ -41,8 +61,8 @@ body {
 .btn-add {
 	display:inline-block;
 	position:relative;
-	width:44px;
-	height:44px;
+	width:40px;
+	height:40px;
 	border-radius:50%;
 	background:#0080cc;
 	text-indent:-9999px;
@@ -52,10 +72,10 @@ body {
 		position:absolute;
 		top:50%;
 		left:50%;
-		width:20px;
+		width:16px;
 		height:2px;
 		margin-top:-1px;
-		margin-left:-10px;
+		margin-left:-8px;
 		background:#fff;
 	}
 	&:after {
@@ -65,8 +85,8 @@ body {
 		top:50%;
 		left:50%;
 		width:2px;
-		height:20px;
-		margin-top:-10px;
+		height:16px;
+		margin-top:-8px;
 		margin-left:-1px;
 		background:#fff;
 	}
