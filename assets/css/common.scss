@@ -10,32 +10,27 @@ button, input[type=button], input[type=submit] {-webkit-appearance:none;-webkit-
 body {
 	max-width:700px;
 	margin:0 auto;
+	background:#f1f1f1;
 }
-.content {
-	padding:30px 20px;
+
+//CONTENT
+.box {
+	margin:15px;
+	padding:15px;
+	background:#fff;
 }
-.title {
-	margin-bottom:10px;
-	font-size:26px;
-	line-height:26px;
-}
-.meta {
-	float:right;
-	font-size:14px;
-	color:#666
-}
-//CHK
-.chk {
-	display:inline-block;
-	width:26px;
-	height:27px;
-	background-image:url('~@/assets/images/bg_check.png');
-	background-repeat:no-repeat;
-	background-position:center 50%;
-	background-size:cover;
-}
-input[type=checkbox]:checked ~ .chk {
-	background-image:url('~@/assets/images/bg_check_ov.png');
+.info {
+	&__status {
+		padding:40px 0;
+		text-align:center
+	}
+	&__temp {
+		font-size:40px
+	}
+	&__number {
+		font-size:18px;
+		color:#666;
+	}
 }
 //BTN
 .btn-wrap {
