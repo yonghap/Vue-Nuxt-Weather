@@ -1,18 +1,27 @@
 <template>
 	<div id="main" class="main">
-		<div class="info box" id="info">
-			<div class="info__status" v-if="weatherData.currentWeather">
-				<img src="~@/assets/images/sunny.png">
-				<div class="info__temp">
+		<div class="current box" id="info">
+			<div class="current__status" v-if="weatherData.currentWeather">
+				<ul class="current__location">
+					<li>{{ weatherData.currentWeather.name }}</li>
+				</ul>
+				<div class="current__icon">
+					<img src="~@/assets/images/sunny.png">
+				</div>
+				<div class="current__temp">
 					<strong>{{ parseInt(weatherData.currentWeather.main.temp - 273.15) }}</strong>°
 				</div>
-				<div class="info__number">
+				<div class="current__number">
 					<strong>{{ parseInt(weatherData.currentWeather.main.temp_max - 273.15) }}</strong>°
 					/
 					<strong>{{ parseInt(weatherData.currentWeather.main.temp_min - 273.15) }}</strong>°
 				</div>
 			</div>
 		</div>
+		<div class="forecast box">
+			123
+		</div>
+
 	</div>
 </template>
 
@@ -24,6 +33,13 @@ export default {
 				currentWeather : '',
 				forecastWeather : ''
 			}
+		}
+	},
+	methods : {
+		translateTimeStamp(dt) {
+			let newDate  = new Date(dt * 1000);
+			return newDate.getFullYear() + "-" + (newDate.getMonth()+1) + "-" + newDate.getDate() +
+				" " + newDate.getHours() + ":" + newDate.getMinutes();
 		}
 	},
 	created() {
