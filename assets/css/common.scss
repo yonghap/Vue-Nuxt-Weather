@@ -12,7 +12,10 @@ body {
 	margin:0 auto;
 	background:#f1f1f1;
 }
-
+.row {
+	display:flex;
+	justify-content:space-between
+}
 //CONTENT
 .box {
 	margin:15px;
@@ -20,26 +23,53 @@ body {
 	background:#fff;
 }
 .current {
-	&__status {
-		position:relative;
-		padding:50px 0;
-		text-align:center
-	}
-	&__location {
-		position:absolute;
-		top:0px;
-		left:0px;
-		font-size:20px;
-		font-weight:bold;
-		text-align:left;
+	&__main {
+		display:inline-block;
+		margin-left:4px;
+		font-size:18px;
+		vertical-align:top;
+		line-height:80px;
 	}
 	&__temp {
-		font-size:40px
+		display:inline-block;
+		font-size:40px;
+		vertical-align:top;
+		line-height:68px;
 	}
-	&__number {
-		margin-top:5px;
-		font-size:18px;
-		color:#666;
+	&__icon {
+		width:80px;
+	}
+}
+.info {
+	padding:10px 0;
+	&__name {
+		font-size:22px;
+		font-weight:600;
+	}
+	&__location {
+		select {
+			height:30px;
+			padding-right:15px;
+			border:none;
+			color:#666;
+		}
+	}
+}
+.etc {
+	padding:10px 0;
+	font-size:0;
+	color:#444;
+	text-align:center;
+	.col {
+		display:inline-block;
+		width:33.33%;
+		font-size:14px;
+	}
+	strong {
+		display:block;
+		margin-bottom:4px;
+		font-size:16px;
+		color:#222;
 	}
 }
 //BTN

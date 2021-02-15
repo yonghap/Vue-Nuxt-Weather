@@ -1,27 +1,55 @@
 <template>
-	<div id="main" class="main">
-		<div class="current box" id="info">
-			<div class="current__status" v-if="weatherData.currentWeather">
-				<ul class="current__location">
-					<li>{{ weatherData.currentWeather.name }}</li>
-				</ul>
-				<div class="current__icon">
-					<img src="~@/assets/images/sunny.png">
+	<div id="main" class="main" v-if="weatherData.currentWeather">
+		<section class="box">
+			<article class="current">
+				<div class="row">
+					<div class="col">
+						<div class="current__temp">
+							{{ parseInt(weatherData.currentWeather.main.temp - 273.15) }}°
+						</div>
+						<div class="current__main">
+							{{ weatherData.currentWeather.weather[0].main }}
+						</div>
+					</div>
+					<div class="col">
+						<div class="current__icon">
+							<img src="~@/assets/images/sunny.png">
+						</div>
+					</div>
 				</div>
-				<div class="current__temp">
-					<strong>{{ parseInt(weatherData.currentWeather.main.temp - 273.15) }}</strong>°
+			</article>
+			<article class="info">
+				<h2 class="info__name">
+					Howdy, Park
+				</h2>
+				<div class="info__location">
+					<select>
+						<option value="seoul" selected>Seoul, South Korea</option>
+						<option value="busal">Seoul, South Korea</option>
+					</select>
 				</div>
-				<div class="current__number">
-					<strong>{{ parseInt(weatherData.currentWeather.main.temp_max - 273.15) }}</strong>°
-					/
-					<strong>{{ parseInt(weatherData.currentWeather.main.temp_min - 273.15) }}</strong>°
+			</article>
+			<article class="etc">
+				<div class="col">
+					<strong>
+						{{ weatherData.currentWeather.main.humidity }}%
+					</strong>
+					Humidity
 				</div>
-			</div>
-		</div>
-		<div class="forecast box">
-			123
-		</div>
-
+				<div class="col">
+					<strong>
+						{{ parseInt(weatherData.currentWeather.main.feels_like - 273.15) }}°
+					</strong>
+					Feels Like
+				</div>
+				<div class="col">
+					<strong>
+						{{ weatherData.currentWeather.wind.speed }}
+					</strong>
+					Wind
+				</div>
+			</article>
+		</section>
 	</div>
 </template>
 
