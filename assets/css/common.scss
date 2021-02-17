@@ -23,31 +23,41 @@ body {
 	font-weight:600;
 }
 .list {
+	&--align {
+		justify-content:center;
+	}
 	display:flex;
 	text-align:center;
 	li {
-		flex-basis:25%;
-		flex-shrink:0;
+		//flex-basis:25%;
+		//flex-shrink:0;
 	}
 	&__icon {
 		max-width:70%;
 		margin:0 auto;
+		margin-bottom:2px;
 	}
-	&__temp {
-		margin:2px 0;
+	&__title {
 		font-weight:600;
 	}
-	&__time {
+	&__subtitle {
+		margin-top:2px;
+		font-size:13px;
+		color:#666;
+	}
+	&__air {
+		padding:0 15px;
 		font-size:13px;
 		color:#666;
 	}
 }
+
 //CONTENT
 .box {
 	margin:15px;
 	padding:22px 20px;
 	background:#fff;
-	box-shadow:2px 2px 10px rgba(0,0,0,0.2);
+	box-shadow:0px 0px 40px rgba(0,0,0,0.1);
 }
 .current {
 	&__main {

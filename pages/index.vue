@@ -62,15 +62,49 @@
 						<img src="~@/assets/images/sleet.png" v-if="n == 3">
 						<img src="~@/assets/images/showers.png" v-if="n == 4">
 					</div>
-					<div class="list__temp">
+					<div class="list__title">
 						{{ parseInt(weatherData.hourly[n * 3].temp - 237.15) }}°
 					</div>
-					<div class="list__time">
+					<div class="list__subtitle">
 						{{ translateTimeStamp(weatherData.hourly[n * 3].dt) }}
 
 					</div>
 				</li>
 			</ul>
+		</section>
+		<section class="box">
+			<h2 class="title">
+				Air Polutions
+			</h2>
+			<ul class="list list--align">
+				<li>
+					<div class="list__air">
+						미세먼지
+					</div>
+					<div class="list__title" v-bind:style="{ color : air.pm10 }">
+						{{ translateFineDust(air.data.list[0].components.pm10) }}
+					</div>
+					<div class="list__subtitle">
+						{{ air.data.list[0].components.pm10 }} ㎍/㎥
+					</div>
+				</li>
+				<li>
+					<div class="list__air">
+						초미세먼지
+					</div>
+					<div class="list__title" v-bind:style="{ color : air.pm2_5 }">
+						{{ translateUltraFineDust(air.data.list[0].components.pm2_5) }}
+					</div>
+					<div class="list__subtitle">
+						{{ air.data.list[0].components.pm2_5 }} ㎍/㎥
+					</div>
+				</li>
+			</ul>
+		</section>
+		<section class="box">
+			<h2 class="title">
+				8-day forecast
+			</h2>
 		</section>
 	</div>
 </template>
@@ -79,10 +113,27 @@
 export default {
 	data() {
 		return {
-			weatherData : ''
+			weatherData : '',
+			air : {
+				data : '',
+				pm10 : '',
+				pm2_5 : ''
+			}
 		}
 	},
 	methods : {
+		translateFineDust(pm10) {
+			if (pm10 < 30) { this.air.pm10 = '#32a1ff'; return '좋음'; }
+			if (pm10 < 80) { this.air.pm10 = '#00c73c'; return '보통'; }
+			if (pm10 < 150) { this.air.pm10 = '#fda60e'; return '나쁨'; }
+			if (pm10 > 150) { this.air.pm10 = '#e64746'; return '매우 나쁨'; }
+		},
+		translateUltraFineDust(pm2_5) {
+			if (pm2_5 < 15) { this.air.pm2_5 = '#32a1ff'; return '좋음'; }
+			if (pm2_5 < 35) { this.air.pm2_5 = '#00c73c'; return '보통'; }
+			if (pm2_5 < 75) { this.air.pm2_5 = '#fda60e'; return '나쁨'; }
+			if (pm2_5 > 76) { this.air.pm2_5 = '#e64746'; return '매우 나쁨'; }
+		},
 		translateTimeStamp(dt) {
 			let newDate  = new Date(dt * 1000);
 			return newDate.getHours() + ":" + newDate.getMinutes() + '0';
@@ -100,10 +151,22 @@ export default {
 			}
 			const weather = await this.$axios.$get('https://api.openweathermap.org/data/2.5/onecall', prm);
 			this.weatherData = weather;
+		},
+		async fetchAir() {
+			const prm = {
+				params: {
+					lat : '37.5683',
+					lon : '126.9778',
+					appid : '754f7bf1ddc3ba9c85002d9fb4143682'
+				}
+			}
+			const air = await this.$axios.$get('https://api.openweathermap.org/data/2.5/air_pollution', prm);
+			this.air.data = air;
 		}
 	},
 	created() {
 		this.fetchWeather();
+		this.fetchAir();
 	}
 }
 </script>
