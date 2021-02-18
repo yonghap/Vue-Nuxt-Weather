@@ -1,5 +1,5 @@
 <template>
-	<div id="main" class="main" v-if="weatherData">
+	<div id="main" class="main" v-if="weatherData && air.data">
 		<section class="box">
 			<article class="current">
 				<div class="row">
@@ -13,7 +13,7 @@
 					</div>
 					<div class="col">
 						<div class="current__icon">
-							<img src="~@/assets/images/partly-cloudy.png">
+							<img :src="require(`~/assets/images/${weatherData.current.weather[0].icon}@2x.png`)">
 						</div>
 					</div>
 				</div>
@@ -63,7 +63,7 @@
 						<img src="~@/assets/images/showers.png" v-if="n == 4">
 					</div>
 					<div class="list__title">
-						{{ parseInt(weatherData.hourly[n * 3].temp - 237.15) }}°
+						{{ parseInt(weatherData.hourly[n * 3].temp - 273.15) }}°
 					</div>
 					<div class="list__subtitle">
 						{{ translateTimeStamp(weatherData.hourly[n * 3].dt) }}
@@ -105,6 +105,22 @@
 			<h2 class="title">
 				8-day forecast
 			</h2>
+			<ul class="item">
+				<li v-for="item in weatherData.daily">
+					<span class="item__date">
+						{{ translateTimeStamp(item.dt, 'date') }}
+					</span>
+					<span class="item__box">
+						<span>
+							<img :src="require(`~/assets/images/${item.weather[0].icon}@2x.png`)">
+						</span>
+						<span>
+							오전 <strong>{{ parseInt(item.temp.morn - 273.15) }}°</strong> /
+							오후 <strong>{{ parseInt(item.temp.eve - 273.15) }}°</strong>
+						</span>
+					</span>
+				</li>
+			</ul>
 		</section>
 	</div>
 </template>
@@ -122,6 +138,7 @@ export default {
 		}
 	},
 	methods : {
+
 		translateFineDust(pm10) {
 			if (pm10 < 30) { this.air.pm10 = '#32a1ff'; return '좋음'; }
 			if (pm10 < 80) { this.air.pm10 = '#00c73c'; return '보통'; }
@@ -134,9 +151,13 @@ export default {
 			if (pm2_5 < 75) { this.air.pm2_5 = '#fda60e'; return '나쁨'; }
 			if (pm2_5 > 76) { this.air.pm2_5 = '#e64746'; return '매우 나쁨'; }
 		},
-		translateTimeStamp(dt) {
+		translateTimeStamp(dt, type) {
 			let newDate  = new Date(dt * 1000);
-			return newDate.getHours() + ":" + newDate.getMinutes() + '0';
+			if (type == 'date') {
+				return (newDate.getMonth()+1) + "-" + newDate.getDate();
+			} else {
+				return newDate.getHours() + ":" + newDate.getMinutes() + '0';
+			}
 			// return newDate.getFullYear() + "-" + (newDate.getMonth()+1) + "-" + newDate.getDate() +
 			// 	" " + newDate.getHours() + ":" + newDate.getMinutes();
 		},

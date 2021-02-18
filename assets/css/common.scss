@@ -23,10 +23,8 @@ body {
 	font-weight:600;
 }
 .list {
-	&--align {
-		justify-content:center;
-	}
 	display:flex;
+	justify-content:center;
 	text-align:center;
 	li {
 		//flex-basis:25%;
@@ -81,12 +79,34 @@ body {
 			display:block;
 			position:absolute;
 			left:50%;
-			bottom:-10px;
+			bottom:0;
 			width:50%;
 			height:6px;
 			margin-left:-25%;
 			border-radius:50%;
 			background:#ddd;
+		}
+	}
+}
+.item {
+	li {
+		display:flex;
+		align-items:center;
+		justify-content:space-between;
+		font-size:14px;
+		color:#666;
+		img {
+			width:40px;
+		}
+	}
+	&__box {
+		display:flex;
+		flex-basis:60%;
+		align-items:center;
+		justify-content:space-between;
+		strong {
+			font-size:16px;
+			color:#222;
 		}
 	}
 }
