@@ -1,5 +1,5 @@
 <template>
-	<div id="main" class="main" v-if="weatherData && air.data">
+	<div id="sub" class="sub" v-if="weatherData && air.data">
 		<section class="box">
 			<article class="current">
 				<div class="row">
