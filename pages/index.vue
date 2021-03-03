@@ -2,7 +2,7 @@
 	<div id="main" class="main">
 		<section class="box">
 			<h2 class="title">
-				ToDo
+				Today’s Weather
 			</h2>
 			<p class="desc">
 				날씨 서비스 토이프로젝트입니다.<br>
@@ -15,14 +15,28 @@
 				<li>CSS : SCSS</li>
 				<li>API : OpenWeather</li>
 			</ul>
-			<select class="slt">
+			<select class="slt" v-model="location">
 				<option value="seoul">서울, 대한민국</option>
 				<option value="busan">부산, 대한민국</option>
 				<option value="kwangju">광주, 대한민국</option>
 				<option value="daejeon">대전, 대한민국</option>
 				<option value="kangreung">강릉, 대한민국</option>
 			</select>
-
 		</section>
 	</div>
 </template>
+
+<script>
+export default {
+	data : function() {
+		return {
+			location : ''
+		}
+	},
+	computed : {
+		test() {
+			return this.$store.state.counter;
+		}
+	}
+}
+</script>
