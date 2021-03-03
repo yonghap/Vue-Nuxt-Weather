@@ -23,20 +23,27 @@
 				<option value="kangreung">강릉, 대한민국</option>
 			</select>
 		</section>
+		<button type="button" @click="toggle">Test</button>
 	</div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
 	data : function() {
 		return {
-			location : ''
+			location : 'seoul'
 		}
 	},
 	computed : {
 		test() {
-			return this.$store.state.counter;
 		}
+	},
+	methods : {
+		...mapMutations({
+			toggle : 'showLocations'
+		})
 	}
 }
 </script>
