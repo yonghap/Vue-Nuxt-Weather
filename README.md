@@ -1,10 +1,10 @@
-# Vue + Nuxt Todo Project
+# Vue + Nuxt Weater Toy Project
 
 
 
 ## 프로젝트 소개
 
-Vue + Nuxt를 활용한 ToDo 프로젝트입니다.
+Vue + Nuxt를 활용한 Weather 프로젝트입니다.
 
 <br>
 
@@ -20,5 +20,9 @@ Figma
 
 ## FrontEnd
 
-Vue.js 3.0 <br>
-Nuxt.Js
+ProntEnd : VueJS <br>
+ETC : Vuex, NuxtJS <br>
+CSS : SCSS <br>
+API : OpenWeather
+
+
