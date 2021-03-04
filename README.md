@@ -20,7 +20,7 @@ Figma
 
 ## FrontEnd
 
-ProntEnd : VueJS <br>
+FrontEnd : VueJS <br>
 ETC : Vuex, NuxtJS <br>
 CSS : SCSS <br>
 API : OpenWeather
