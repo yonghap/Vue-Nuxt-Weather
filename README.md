@@ -10,7 +10,7 @@ Vue + Nuxt를 활용한 Weather 프로젝트입니다.
 
 ## 프로젝트 화면
 
-<br>
+<img src="https://user-images.githubusercontent.com/7742074/109952032-bd677980-7d21-11eb-852e-b153edde9353.jpg">
 
 ## Prototype 
 
