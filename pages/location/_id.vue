@@ -20,47 +20,24 @@
 			</article>
 			<article class="info">
 				<h2 class="info__name">
-					Howdy, Park
+					Howdy! {{ currentLocation.nameeng }}
 				</h2>
 				<div class="info__location">
-					<select>
-						<option value="seoul" selected>Seoul, South Korea</option>
-						<option value="busal">Seoul, South Korea</option>
-					</select>
-				</div>
-			</article>
-			<article class="etc">
-				<div class="col">
-					<strong>
-						{{ weatherData.current.humidity }}%
-					</strong>
-					Humidity
-				</div>
-				<div class="col">
-					<strong>
-						{{ parseInt(weatherData.current.feels_like - 273.15) }}°
-					</strong>
-					Feels Like
-				</div>
-				<div class="col">
-					<strong>
-						{{ weatherData.current.wind_speed }}
-					</strong>
-					Wind
+					<TheLocations v-bind:local="currentLocation.nameeng"></TheLocations>
 				</div>
 			</article>
 		</section>
 		<section class="box">
 			<h2 class="title">
 				Today
+				<small>
+					{{ translateTimeStamp(weatherData.current.dt, 'date') }}
+				</small>
 			</h2>
 			<ul class="list">
 				<li v-for="n in 4">
 					<div class="list__icon">
-						<img src="~@/assets/images/sunny.png" v-if="n == 1">
-						<img src="~@/assets/images/partly-cloudy.png" v-if="n == 2">
-						<img src="~@/assets/images/sleet.png" v-if="n == 3">
-						<img src="~@/assets/images/showers.png" v-if="n == 4">
+						<img :src="require(`~/assets/images/${weatherData.hourly[n - 1].weather[0].icon}@2x.png`)">
 					</div>
 					<div class="list__title">
 						{{ parseInt(weatherData.hourly[n * 3].temp - 273.15) }}°
@@ -71,6 +48,29 @@
 					</div>
 				</li>
 			</ul>
+			<article class="etc">
+				<div class="col">
+					<strong>
+						{{ weatherData.current.humidity }}%
+					</strong>
+					Humidity<br>
+					(습도)
+				</div>
+				<div class="col">
+					<strong>
+						{{ parseInt(weatherData.current.feels_like - 273.15) }}°
+					</strong>
+					Feels Like<br>
+					(체감 온도)
+				</div>
+				<div class="col">
+					<strong>
+						{{ weatherData.current.wind_speed }}
+					</strong>
+					Wind<br>
+					(풍속)
+				</div>
+			</article>
 		</section>
 		<section class="box">
 			<h2 class="title">
@@ -103,7 +103,7 @@
 		</section>
 		<section class="box">
 			<h2 class="title">
-				8-day forecast
+				8-day Forecast
 			</h2>
 			<ul class="item">
 				<li v-for="item in weatherData.daily">
@@ -129,6 +129,7 @@
 export default {
 	data() {
 		return {
+			currentLocation : null,
 			weatherData : '',
 			air : {
 				data : '',
@@ -137,8 +138,12 @@ export default {
 			}
 		}
 	},
+	mounted() {
+		this.currentLocation = this.$store.state.locations.find(n => {
+			return n.nameeng == this.$route.params.id
+		});
+	},
 	methods : {
-
 		translateFineDust(pm10) {
 			if (pm10 < 30) { this.air.pm10 = '#32a1ff'; return '좋음'; }
 			if (pm10 < 80) { this.air.pm10 = '#00c73c'; return '보통'; }
@@ -154,7 +159,7 @@ export default {
 		translateTimeStamp(dt, type) {
 			let newDate  = new Date(dt * 1000);
 			if (type == 'date') {
-				return (newDate.getMonth()+1) + "-" + newDate.getDate();
+				return (newDate.getMonth()+1) + "월 " + newDate.getDate() + '일';
 			} else {
 				return newDate.getHours() + ":" + newDate.getMinutes() + '0';
 			}
@@ -164,8 +169,8 @@ export default {
 		async fetchWeather() {
 			const prm = {
 				params: {
-					lat : '37.5683',
-					lon : '126.9778',
+					lat : this.currentLocation.lat,
+					lon :  this.currentLocation.lon,
 					exclude : '',
 					appid : '754f7bf1ddc3ba9c85002d9fb4143682'
 				}
@@ -176,8 +181,8 @@ export default {
 		async fetchAir() {
 			const prm = {
 				params: {
-					lat : '37.5683',
-					lon : '126.9778',
+					lat : this.currentLocation.lat,
+					lon : this.currentLocation.lon,
 					appid : '754f7bf1ddc3ba9c85002d9fb4143682'
 				}
 			}
@@ -186,8 +191,10 @@ export default {
 		}
 	},
 	created() {
-		this.fetchWeather();
-		this.fetchAir();
+		this.$nextTick(function ()  {
+			this.fetchWeather();
+			this.fetchAir();
+		})
 	}
 }
 </script>

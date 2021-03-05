@@ -15,35 +15,18 @@
 				<li>CSS : SCSS</li>
 				<li>API : OpenWeather</li>
 			</ul>
-			<select class="slt" v-model="location">
-				<option value="seoul">서울, 대한민국</option>
-				<option value="busan">부산, 대한민국</option>
-				<option value="kwangju">광주, 대한민국</option>
-				<option value="daejeon">대전, 대한민국</option>
-				<option value="kangreung">강릉, 대한민국</option>
-			</select>
+			<TheLocations />
 		</section>
-		<button type="button" @click="toggle">Test</button>
 	</div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+// import { mapMutations } from 'vuex'
+import TheLocations from "../components/TheLocations";
 
 export default {
-	data : function() {
-		return {
-			location : 'seoul'
-		}
-	},
-	computed : {
-		test() {
-		}
-	},
-	methods : {
-		...mapMutations({
-			toggle : 'showLocations'
-		})
+	components: {
+		TheLocations
 	}
 }
 </script>
