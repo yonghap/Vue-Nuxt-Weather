@@ -142,6 +142,7 @@ export default {
 		this.currentLocation = this.$store.state.locations.find(n => {
 			return n.nameeng == this.$route.params.id
 		});
+		this.mySpecialMethod();
 	},
 	methods : {
 		translateFineDust(pm10) {
