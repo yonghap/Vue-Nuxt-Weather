@@ -81,8 +81,8 @@
 					<div class="list__air">
 						미세먼지
 					</div>
-					<div class="list__title" v-bind:style="{ color : air.pm10 }">
-						{{ translateFineDust(air.data.list[0].components.pm10) }}
+					<div class="list__title" v-bind:style="{ color : translateFineDust(air.data.list[0].components.pm10).color }">
+						{{ translateFineDust(air.data.list[0].components.pm10).text }}
 					</div>
 					<div class="list__subtitle">
 						{{ air.data.list[0].components.pm10 }} ㎍/㎥
@@ -92,8 +92,8 @@
 					<div class="list__air">
 						초미세먼지
 					</div>
-					<div class="list__title" v-bind:style="{ color : air.pm2_5 }">
-						{{ translateUltraFineDust(air.data.list[0].components.pm2_5) }}
+					<div class="list__title" v-bind:style="{ color : translateUltraFineDust(air.data.list[0].components.pm2_5).color }">
+						{{ translateUltraFineDust(air.data.list[0].components.pm2_5).text }}
 					</div>
 					<div class="list__subtitle">
 						{{ air.data.list[0].components.pm2_5 }} ㎍/㎥
@@ -138,35 +138,28 @@ export default {
 			}
 		}
 	},
+	head() {
+		return {
+			title: 'Today’s Weather - ' + this.$route.params.id,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content: 'Today’s Weather - ' + this.$route.params.id,
+				}
+			]
+		}
+	},
 	mounted() {
 		this.currentLocation = this.$store.state.locations.find(n => {
 			return n.nameeng == this.$route.params.id
 		});
-		this.mySpecialMethod();
 	},
 	methods : {
-		translateFineDust(pm10) {
-			if (pm10 < 30) { this.air.pm10 = '#32a1ff'; return '좋음'; }
-			if (pm10 < 80) { this.air.pm10 = '#00c73c'; return '보통'; }
-			if (pm10 < 150) { this.air.pm10 = '#fda60e'; return '나쁨'; }
-			if (pm10 > 150) { this.air.pm10 = '#e64746'; return '매우 나쁨'; }
-		},
-		translateUltraFineDust(pm2_5) {
-			if (pm2_5 < 15) { this.air.pm2_5 = '#32a1ff'; return '좋음'; }
-			if (pm2_5 < 35) { this.air.pm2_5 = '#00c73c'; return '보통'; }
-			if (pm2_5 < 75) { this.air.pm2_5 = '#fda60e'; return '나쁨'; }
-			if (pm2_5 > 76) { this.air.pm2_5 = '#e64746'; return '매우 나쁨'; }
-		},
-		translateTimeStamp(dt, type) {
-			let newDate  = new Date(dt * 1000);
-			if (type == 'date') {
-				return (newDate.getMonth()+1) + "월 " + newDate.getDate() + '일';
-			} else {
-				return newDate.getHours() + ":" + newDate.getMinutes() + '0';
-			}
-			// return newDate.getFullYear() + "-" + (newDate.getMonth()+1) + "-" + newDate.getDate() +
-			// 	" " + newDate.getHours() + ":" + newDate.getMinutes();
-		},
+		/**
+		 * 날씨예보
+		 * @returns {Promise<void>}
+		 */
 		async fetchWeather() {
 			const prm = {
 				params: {
@@ -179,6 +172,10 @@ export default {
 			const weather = await this.$axios.$get('https://api.openweathermap.org/data/2.5/onecall', prm);
 			this.weatherData = weather;
 		},
+		/**
+		 * 미세먼지 정보
+		 * @returns {Promise<void>}
+		 */
 		async fetchAir() {
 			const prm = {
 				params: {
@@ -199,7 +196,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="scss">
-
-</style>
