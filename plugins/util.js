@@ -49,6 +49,6 @@ Vue.mixin({
 			} else {
 				return newDate.getHours() + ":" + newDate.getMinutes() + '0';
 			}
-		},
+		}
 	}
 })

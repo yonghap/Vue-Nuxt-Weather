@@ -1,5 +1,5 @@
 <template>
-	<div id="sub" class="sub" v-if="weatherData && air.data">
+	<div id="sub" class="sub" v-if="currentLocation && weatherData && air.data">
 		<section class="box">
 			<article class="current">
 				<div class="row">
@@ -135,6 +135,12 @@ export default {
 				data : '',
 				pm10 : '',
 				pm2_5 : ''
+			},
+			geo : {
+				nameeng : '',
+				namekor : '',
+				lat : '',
+				lon : ''
 			}
 		}
 	},
@@ -151,9 +157,14 @@ export default {
 		}
 	},
 	mounted() {
-		this.currentLocation = this.$store.state.locations.find(n => {
-			return n.nameeng == this.$route.params.id
-		});
+		if (this.$route.params.id == 'MyLocation') {
+			this.getLocation();
+			this.currentLocation = this.geo;
+		} else {
+			this.currentLocation = this.$store.state.locations.find(n => {
+				return n.nameeng == this.$route.params.id
+			});
+		}
 	},
 	methods : {
 		/**
@@ -186,6 +197,30 @@ export default {
 			}
 			const air = await this.$axios.$get('https://api.openweathermap.org/data/2.5/air_pollution', prm);
 			this.air.data = air;
+		},
+		getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(this.showPosition);
+			} else {
+				console.log("Geolocation is not supported by this browser.");
+			}
+		},
+		showPosition(position) {
+			this.geo.lat = String(position.coords.latitude);
+			this.geo.lon = String(position.coords.longitude);
+			this.fetchGeolocation(this.geo.lat, this.geo.lon);
+		},
+		async fetchGeolocation(lat,lon) {
+			const prm = {
+				params: {
+					lat : lat,
+					lon : lon,
+					appid : '754f7bf1ddc3ba9c85002d9fb4143682'
+				}
+			}
+			const geoResult = await this.$axios.$get('http://api.openweathermap.org/geo/1.0/reverse?&limit=5', prm);
+			this.geo.nameeng = geoResult[0].local_names.ascii;
+			this.geo.namekor = geoResult[0].local_names.ascii;
 		}
 	},
 	created() {
