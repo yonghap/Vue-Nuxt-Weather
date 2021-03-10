@@ -38,3 +38,26 @@ export const mutations = {
 		console.log(state.locations);
 	}
 }
+
+export const actions = {
+	async fetchWeatherData({ commint }) {
+		return new Promise( (resolve, reject) => {
+			const prm = {
+				params: {
+					lat : '37.5683',
+					lon :  '126.9778',
+					exclude : '',
+					appid : '754f7bf1ddc3ba9c85002d9fb4143682'
+				}
+			}
+			this.$axios.$get('https://api.openweathermap.org/data/2.5/onecall', prm)
+				.then((result) => {
+					console.log('호출완료');
+					console.log(result);
+				})
+				.catch(err => {
+					reject(err);
+				})
+		})
+	}
+}

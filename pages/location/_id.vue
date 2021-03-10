@@ -126,21 +126,17 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
 	data() {
 		return {
-			currentLocation : null,
+			currentLocation : {},
 			weatherData : '',
 			air : {
 				data : '',
 				pm10 : '',
 				pm2_5 : ''
-			},
-			geo : {
-				nameeng : '',
-				namekor : '',
-				lat : '',
-				lon : ''
 			}
 		}
 	},
@@ -156,17 +152,10 @@ export default {
 			]
 		}
 	},
-	mounted() {
-		if (this.$route.params.id == 'MyLocation') {
-			this.getLocation();
-			this.currentLocation = this.geo;
-		} else {
-			this.currentLocation = this.$store.state.locations.find(n => {
-				return n.nameeng == this.$route.params.id
-			});
-		}
-	},
 	methods : {
+		...mapActions({
+			add: 'fetchWeatherData'
+		}),
 		/**
 		 * 날씨예보
 		 * @returns {Promise<void>}
@@ -199,16 +188,16 @@ export default {
 			this.air.data = air;
 		},
 		getLocation() {
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(this.showPosition);
-			} else {
-				console.log("Geolocation is not supported by this browser.");
-			}
+			// if (navigator.geolocation) {
+			// 	navigator.geolocation.getCurrentPosition(this.showPosition);
+			// } else {
+			// 	console.log("Geolocation is not supported by this browser.");
+			// }
 		},
 		showPosition(position) {
-			this.geo.lat = String(position.coords.latitude);
-			this.geo.lon = String(position.coords.longitude);
-			this.fetchGeolocation(this.geo.lat, this.geo.lon);
+			this.currentLocation.lat = String(position.coords.latitude);
+			this.currentLocation.lon = String(position.coords.longitude);
+			this.fetchGeolocation(this.currentLocation.lat, this.currentLocation.lon);
 		},
 		async fetchGeolocation(lat,lon) {
 			const prm = {
@@ -219,15 +208,26 @@ export default {
 				}
 			}
 			const geoResult = await this.$axios.$get('http://api.openweathermap.org/geo/1.0/reverse?&limit=5', prm);
-			this.geo.nameeng = geoResult[0].local_names.ascii;
-			this.geo.namekor = geoResult[0].local_names.ascii;
+			this.currentLocation.nameeng = geoResult[0].local_names.ascii;
+			this.currentLocation.namekor = geoResult[0].local_names.ascii;
 		}
 	},
 	created() {
+		if (this.$route.params.id == 'MyLocation') {
+			this.getLocation();
+		} else {
+			this.currentLocation = this.$store.state.locations.find(n => {
+				return n.nameeng == this.$route.params.id
+			});
+		}
+	},
+	mounted() {
 		this.$nextTick(function ()  {
 			this.fetchWeather();
 			this.fetchAir();
+			this.add();
 		})
-	}
+	},
+
 }
 </script>
