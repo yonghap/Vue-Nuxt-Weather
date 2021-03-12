@@ -154,7 +154,7 @@ export default {
 	},
 	methods : {
 		...mapActions({
-			add: 'fetchWeatherData'
+			getWeather: 'fetchWeatherData'
 		}),
 		/**
 		 * 날씨예보
@@ -225,7 +225,11 @@ export default {
 		this.$nextTick(function ()  {
 			this.fetchWeather();
 			this.fetchAir();
-			this.add();
+
+			this.getWeather({
+				lat : '37.7519967',
+				lon : '128.8059146'
+			});
 		})
 	},
 

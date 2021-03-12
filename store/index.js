@@ -1,4 +1,5 @@
 export const state = () => ({
+	appid : '754f7bf1ddc3ba9c85002d9fb4143682',
 	locations : [
 		{
 			nameeng : 'Seoul',
@@ -33,6 +34,12 @@ export const state = () => ({
 	]
 });
 
+export const getters = {
+	getAppId : state => {
+		return state.appid
+	}
+}
+
 export const mutations = {
 	showLocations(state) {
 		console.log(state.locations);
@@ -40,14 +47,14 @@ export const mutations = {
 }
 
 export const actions = {
-	async fetchWeatherData({ commint }) {
+	async fetchWeatherData( { commint, state }, geoInfo ) {
 		return new Promise( (resolve, reject) => {
 			const prm = {
 				params: {
 					lat : '37.5683',
 					lon :  '126.9778',
 					exclude : '',
-					appid : '754f7bf1ddc3ba9c85002d9fb4143682'
+					appid : state.appid
 				}
 			}
 			this.$axios.$get('https://api.openweathermap.org/data/2.5/onecall', prm)
