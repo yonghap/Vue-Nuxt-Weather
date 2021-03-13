@@ -1,5 +1,6 @@
 export const state = () => ({
 	appid : '754f7bf1ddc3ba9c85002d9fb4143682',
+	currentLocation : null,
 	locations : [
 		{
 			nameeng : 'Seoul',
@@ -35,32 +36,74 @@ export const state = () => ({
 });
 
 export const getters = {
-	getAppId : state => {
-		return state.appid
+	getCurrentLocation : state => {
+		return state.currentLocation;
 	}
 }
 
 export const mutations = {
-	showLocations(state) {
-		console.log(state.locations);
+	setCurrentLocation(state, payload) {
+		state.currentLocation = payload;
 	}
 }
 
 export const actions = {
-	async fetchWeatherData( { commint, state }, geoInfo ) {
+	/**
+	 *
+	 * @param commit
+	 * @param state
+	 * @param geoInfo
+	 * @returns {Promise<unknown>}
+	 */
+	async fetchWeatherData( { commit, state }, geoInfo ) {
 		return new Promise( (resolve, reject) => {
 			const prm = {
 				params: {
-					lat : '37.5683',
-					lon :  '126.9778',
+					lat : geoInfo.lat,
+					lon :  geoInfo.lon,
 					exclude : '',
 					appid : state.appid
 				}
 			}
 			this.$axios.$get('https://api.openweathermap.org/data/2.5/onecall', prm)
 				.then((result) => {
-					console.log('호출완료');
-					console.log(result);
+					resolve(result);
+				})
+				.catch(err => {
+					reject(err);
+				})
+		})
+	},
+	async fetchAirData( { commit, state }, geoInfo ) {
+		return new Promise( (resolve, reject) => {
+			const prm = {
+				params: {
+					lat : geoInfo.lat,
+					lon :  geoInfo.lon,
+					appid : state.appid
+				}
+			}
+			this.$axios.$get('https://api.openweathermap.org/data/2.5/air_pollution', prm)
+				.then((result) => {
+					resolve(result);
+				})
+				.catch(err => {
+					reject(err);
+				})
+		})
+	},
+	async fetchGeoLocation( {commit, state }, geoInfo) {
+		return new Promise( (resolve, reject) => {
+			const prm = {
+				params: {
+					lat : geoInfo.lat,
+					lon :  geoInfo.lon,
+					appid : state.appid
+				}
+			}
+			this.$axios.$get('http://api.openweathermap.org/geo/1.0/reverse?&limit=5', prm)
+				.then((result) => {
+					resolve(result);
 				})
 				.catch(err => {
 					reject(err);

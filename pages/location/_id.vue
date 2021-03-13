@@ -126,12 +126,11 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
 	data() {
 		return {
-			currentLocation : {},
 			weatherData : '',
 			air : {
 				data : '',
@@ -139,6 +138,16 @@ export default {
 				pm2_5 : ''
 			}
 		}
+	},
+	computed : {
+		...mapGetters({
+			currentLocation : 'getCurrentLocation'
+		})
+	},
+	methods : {
+		...mapActions({
+			getWeather: 'fetchWeatherData'
+		})
 	},
 	head() {
 		return {
@@ -152,84 +161,34 @@ export default {
 			]
 		}
 	},
-	methods : {
-		...mapActions({
-			getWeather: 'fetchWeatherData'
-		}),
-		/**
-		 * 날씨예보
-		 * @returns {Promise<void>}
-		 */
-		async fetchWeather() {
-			const prm = {
-				params: {
-					lat : this.currentLocation.lat,
-					lon :  this.currentLocation.lon,
-					exclude : '',
-					appid : '754f7bf1ddc3ba9c85002d9fb4143682'
-				}
-			}
-			const weather = await this.$axios.$get('https://api.openweathermap.org/data/2.5/onecall', prm);
-			this.weatherData = weather;
-		},
-		/**
-		 * 미세먼지 정보
-		 * @returns {Promise<void>}
-		 */
-		async fetchAir() {
-			const prm = {
-				params: {
-					lat : this.currentLocation.lat,
-					lon : this.currentLocation.lon,
-					appid : '754f7bf1ddc3ba9c85002d9fb4143682'
-				}
-			}
-			const air = await this.$axios.$get('https://api.openweathermap.org/data/2.5/air_pollution', prm);
-			this.air.data = air;
-		},
-		getLocation() {
-			// if (navigator.geolocation) {
-			// 	navigator.geolocation.getCurrentPosition(this.showPosition);
-			// } else {
-			// 	console.log("Geolocation is not supported by this browser.");
-			// }
-		},
-		showPosition(position) {
-			this.currentLocation.lat = String(position.coords.latitude);
-			this.currentLocation.lon = String(position.coords.longitude);
-			this.fetchGeolocation(this.currentLocation.lat, this.currentLocation.lon);
-		},
-		async fetchGeolocation(lat,lon) {
-			const prm = {
-				params: {
-					lat : lat,
-					lon : lon,
-					appid : '754f7bf1ddc3ba9c85002d9fb4143682'
-				}
-			}
-			const geoResult = await this.$axios.$get('http://api.openweathermap.org/geo/1.0/reverse?&limit=5', prm);
-			this.currentLocation.nameeng = geoResult[0].local_names.ascii;
-			this.currentLocation.namekor = geoResult[0].local_names.ascii;
-		}
-	},
 	created() {
 		if (this.$route.params.id == 'MyLocation') {
 			this.getLocation();
 		} else {
-			this.currentLocation = this.$store.state.locations.find(n => {
+			let current = this.$store.state.locations.find(n => {
 				return n.nameeng == this.$route.params.id
 			});
+			this.$store.commit('setCurrentLocation', current)
 		}
 	},
 	mounted() {
 		this.$nextTick(function ()  {
-			this.fetchWeather();
-			this.fetchAir();
-
-			this.getWeather({
-				lat : '37.7519967',
-				lon : '128.8059146'
-			});
+			this.$store.dispatch('fetchWeatherData', {
+				lat : this.currentLocation.lat,
+				lon : this.currentLocation.lon
+			}).then(response => {
+				this.weatherData = response
+			}, error => {
+				console.log(error);
+			})
+			this.$store.dispatch('fetchAirData', {
+				lat : this.currentLocation.lat,
+				lon : this.currentLocation.lon
+			}).then(response => {
+				this.air.data = response;
+			}, error => {
+				console.log(error);
+			})
 		})
 	},
 

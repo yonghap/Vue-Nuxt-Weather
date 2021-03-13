@@ -3,6 +3,38 @@ import Vue from 'vue'
 Vue.mixin({
 	methods:{
 		/**
+		 * 지역 가져오기
+		 */
+		getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(this.setGeoLocation);
+			} else {
+				console.log("Geolocation is not supported by this browser.");
+			}
+		},
+		/**
+		 *
+		 * @param position
+		 */
+		setGeoLocation(position) {
+			this.$store.dispatch('fetchGeoLocation', {
+				lat : position.coords.latitude,
+				lon : position.coords.longitude
+			})
+			.then(response => {
+				let geoInfo = {
+					nameeng : response[0].local_names.ascii,
+					namekor : response[0].local_names.ascii,
+					lat : position.coords.latitude,
+					lon : position.coords.longitude
+				}
+				console.log(geoInfo);
+				this.$store.commit("setCurrentLocation", geoInfo);
+			}, error => {
+				console.log(error);
+			})
+		},
+		/**
 		 * 미세먼지 정보
 		 * @param pm10
 		 * @returns {{color: string, text: string}}

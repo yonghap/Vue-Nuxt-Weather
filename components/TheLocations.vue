@@ -1,8 +1,8 @@
 <template>
 	<div class="locations">
-<!--		<button type="button" class="btn-location" @click="goToLocation('MyLocation')">-->
-<!--			내 위치-->
-<!--		</button>-->
+		<button type="button" class="btn-location" @click="goToLocation('MyLocation')">
+			내 위치
+		</button>
 		<button type="button" class="btn-location"
 				v-for="item in locations"
 				:class="{ active : local == item.nameeng }"
