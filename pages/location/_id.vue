@@ -161,7 +161,7 @@ export default {
 			]
 		}
 	},
-	created() {
+	beforeMount() {
 		if (this.$route.params.id == 'MyLocation') {
 			this.getLocation();
 		} else {

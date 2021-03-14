@@ -13,7 +13,7 @@ Vue.mixin({
 			}
 		},
 		/**
-		 *
+		 * 좌표 가져오기
 		 * @param position
 		 */
 		setGeoLocation(position) {
@@ -28,7 +28,6 @@ Vue.mixin({
 					lat : position.coords.latitude,
 					lon : position.coords.longitude
 				}
-				console.log(geoInfo);
 				this.$store.commit("setCurrentLocation", geoInfo);
 			}, error => {
 				console.log(error);

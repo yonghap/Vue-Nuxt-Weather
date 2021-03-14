@@ -1,6 +1,11 @@
 export const state = () => ({
 	appid : '754f7bf1ddc3ba9c85002d9fb4143682',
-	currentLocation : null,
+	currentLocation : {
+		nameeng : 'Seoul',
+		namekor : '서울',
+		lat : '37.5683',
+		lon : '126.9778'
+	},
 	locations : [
 		{
 			nameeng : 'Seoul',

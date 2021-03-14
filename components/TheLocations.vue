@@ -1,6 +1,9 @@
 <template>
 	<div class="locations">
-		<button type="button" class="btn-location" @click="goToLocation('MyLocation')">
+		<button type="button" class="btn-location"
+				:class="{ active : this.$route.params.id == 'MyLocation' }"
+				@click="goToLocation('MyLocation')"
+		>
 			내 위치
 		</button>
 		<button type="button" class="btn-location"
