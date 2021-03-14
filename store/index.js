@@ -106,7 +106,7 @@ export const actions = {
 					appid : state.appid
 				}
 			}
-			this.$axios.$get('http://api.openweathermap.org/geo/1.0/reverse?&limit=5', prm)
+			this.$axios.$get('https://api.openweathermap.org/geo/1.0/reverse?&limit=5', prm)
 				.then((result) => {
 					resolve(result);
 				})
