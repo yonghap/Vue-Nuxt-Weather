@@ -1,4 +1,4 @@
-# Vue + Nuxt Weater Toy Project
+# Vue + Nuxt Weather Toy Project
 
 **무료서버 사용으로 속도가 느립니다.**
 
