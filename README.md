@@ -2,9 +2,13 @@
 
 **무료서버 사용으로 속도가 느립니다.**
 
+<br> 
+
 ## 프로젝트 보기
 
 <a href="https://vue-nuxt-weather.herokuapp.com/" target="_blank">Today’s Weather</a>
+
+<br>
 
 ## 프로젝트 소개
 
@@ -17,6 +21,8 @@ heroku 무료 서비스로 접속이 느릴 수 있습니다.
 ## 프로젝트 화면
 
 <img src="https://user-images.githubusercontent.com/7742074/111078339-43f93380-8538-11eb-92a8-bd0065b2de5d.jpg">
+
+<br>
 
 ## Prototype 
 
