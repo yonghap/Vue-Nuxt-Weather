@@ -1,12 +1,11 @@
 # Vue + Nuxt Weather Toy Project
 
-**무료서버 사용으로 속도가 느립니다.**
 
 <br> 
 
 ## 프로젝트 보기
 
-<a href="https://vue-nuxt-weather.herokuapp.com/" target="_blank">Today’s Weather</a>
+**무료서버 지원 종료로 인한 접속불가**
 
 <br>
 
